@@ -28,7 +28,7 @@
 		<div class="panel panel-default">
 		  <div class="panel-body">
 		  	
-		  	<center><h5>QUÃO SEGURA É A SUA SENHA?</h5></center>
+		  	<center><h5>SUA SENHA É SEGURA?</h5></center>
 		  	<form class="form-horizontal" method="POST" action="/home" th:object="${senha}" id="passwordSecurity">
 		  	<div class="col-sm-6">
 		  		
@@ -86,39 +86,40 @@
 			    </thead>
 			    <tbody>
 			      <tr>			      	
-			        <td class="col-md-6">Número de Carcteres</td>
+			        <td class="col-md-6">Número de Caracteres</td>
 			        <td class="col-md-1"><center>Flat</center></td>
 			        <td class="col-md-2"><center>+(n*4)</center></td>
-			        <td class="col-md-2"><input class="form-control" value="8" disabled="true"/></td>
-			        <td class="col-md-1"><center>+14</center></td>
+			        <td class="col-md-2"><input class="form-control" th:value="${senha.qtNumCaracteres}" disabled="true"/></td>
+			        <td class="col-md-1"><center><p th:text="| + ${senha.bnsNumCaracteres} |"></p></center></td>
 			      </tr>
 			      <tr>			      	
-			        <td class="col-md-6">Carcteres Maiúsculos</td>
+			        <td class="col-md-6">Caracteres Maiúsculos</td>
 			        <td class="col-md-1"><center>Cond/Incr</center></td>
 			        <td class="col-md-2"><center>+((len-n)*2)</center></td>
-			        <td class="col-md-2"><input class="form-control" value="8" disabled="true"/></td>
-			        <td class="col-md-1"><center>+14</center></td>
+			        <td class="col-md-2"><input class="form-control" th:value="${senha.qtCarcMaiusculos}" disabled="true"/></td>
+			        <td class="col-md-1"><center><p th:text="| + ${senha.bnsCarcMaiusculos} |"></p></center></td>
+			        
 			      </tr>
 			      <tr>			      	
-			        <td class="col-md-6">Carcteres Minsculos</td>
+			        <td class="col-md-6">Caracteres Minsculos</td>
 			        <td class="col-md-1"><center>Cond/Incr</center></td>
 			        <td class="col-md-2"><center>+((len-n)*2)</center></td>
-			        <td class="col-md-2"><input class="form-control" value="8" disabled="true"/></td>
-			        <td class="col-md-1"><center>+14</center></td>
+			        <td class="col-md-2"><input class="form-control" th:value="${senha.qtCarcMinusculos}" disabled="true"/></td>
+			        <td class="col-md-1"><center><p th:text="| + ${senha.bnsCarcMinusculos} |"></p></center></td>
 			      </tr>
 			      <tr>			      	
 			        <td class="col-md-6">Número</td>
 			        <td class="col-md-1"><center>Cond</center></td>
 			        <td class="col-md-2"><center>+(n*4)</center></td>
-			        <td class="col-md-2"><input class="form-control" value="8" disabled="true"/></td>
-			        <td class="col-md-1"><center>+14</center></td>
+			        <td class="col-md-2"><input class="form-control" th:value="${senha.qtNumbers}" disabled="true"/></td>
+			        <td class="col-md-1"><center><p th:text="| + ${senha.bnsNumbers} |"></p></center></td>
 			      </tr>
 			      <tr>			      	
 			        <td class="col-md-6">Simbolos</td>
 			        <td class="col-md-1"><center>Flat</center></td>
 			        <td class="col-md-2"><center>+(n*6)</center></td>
-			        <td class="col-md-2"><input class="form-control" value="8" disabled="true"/></td>
-			        <td class="col-md-1"><center>+14</center></td>
+			        <td class="col-md-2"><input class="form-control" th:value="${senha.qtSimbolos}" disabled="true"/></td>
+			        <td class="col-md-1"><center><p th:text="| + ${senha.bnsSimbolos} |"></p></center></td>
 			      </tr>
 			      <tr>			      	
 			        <td class="col-md-6">Sequencia de numero ou simbolos</td>
