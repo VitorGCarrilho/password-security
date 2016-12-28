@@ -12,7 +12,6 @@ body{
 }
 .img-header{
 	width:150px;
-	margin-top: 3rem;
 }
 form{
 	background-color: #fff;
@@ -21,10 +20,11 @@ form{
 
 .footer-bottom {
     background-color: #1abc9c;
-     position: absolute;
-     bottom: 0;
-    min-height: 30px;
-    width: 100%;
+    clear: both;
+    position: relative;
+    z-index: 10;
+    height: 3em;
+    margin-top: -3em;
 }
 .copyright {
     color: #fff;
