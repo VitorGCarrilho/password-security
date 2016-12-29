@@ -17,138 +17,273 @@
 
 
 	<div class="header">
-		
-		<img src="/images/password.png" class="img-responsive center-block img-header" alt=""/>
+
+		<img src="/images/password.png"
+			class="img-responsive center-block img-header" alt="" />
 		<h1 class="text-center headline">Password Security</h1>
-		<h2 class="text-center subheadline">Avaliador de segurança de senha</h2>
+		<h2 class="text-center subheadline">Avaliador de segurança de
+			senha</h2>
 	</div>
-	
+
 	<div class="col-lg-6 col-lg-offset-3">
-		
+
 		<div class="panel panel-default">
-		  <div class="panel-body">
-		  	
-		  	<center><h5>SUA SENHA É SEGURA?</h5></center>
-		  	<form class="form-horizontal" method="POST" action="/home" th:object="${senha}" id="passwordSecurity">
-		  	<div class="col-sm-6">
-		  		
-			  	<label for="password">Senha:</label>
-			  	<input type="password" class="form-control" id="password" name="dsSenha" th:value="${senha.dsSenha}"/>
-			  	<br/>
-			  	<input type="checkbox" id="show-hide" name="show-hide" value="" />
-				<label for="show-hide">Mostrar senha</label>
-				
-			  	<br/>
-			  	<div>	
-				  	<div class="col-sm-6">
-					  	<label for="password">Pontuação:</label>	
-					  	<div class="progress">
-							<div class="progress-bar progress-bar-success" role="progressbar" style="width:100%">
-							  100% Segura
+			<div class="panel-body">
+
+				<center>
+					<h5>SUA SENHA É SEGURA?</h5>
+				</center>
+				<form class="form-horizontal" method="POST" action="/home"
+					th:object="${senha}" id="passwordSecurity">
+					<div class="col-sm-6">
+
+						<label for="password">Senha:</label> <input type="password"
+							class="form-control" id="password" name="dsSenha"
+							th:value="${senha.dsSenha}" /> <br /> <input type="checkbox"
+							id="show-hide" name="show-hide" value="" /> <label
+							for="show-hide">Mostrar senha</label> <br />
+						<div>
+							<div class="col-sm-6">
+								<label for="password">Pontuação:</label>
+								<div class="progress">
+									<div class="progress-bar" th:classappend="|progress-bar-${senha.classificacao.classeClassificacao}|"
+										role="progressbar" th:style="| width: ${senha.soma}% |"><p th:text="|${senha.soma}%|"></p></div>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<label for="password">Classificação:</label> 
+									<span class="label" th:text="${senha.classificacao.dsClassificacao}"
+									th:classappend="|progress-bar-${senha.classificacao.classeClassificacao}|"
+									></span>
 							</div>
 						</div>
+
 					</div>
 					<div class="col-sm-6">
-						<label for="password">Classificação:</label>
-						<input class="col-lg-12 form-control" value="Very Strong" disabled="true"/>
+						<label for="password">Requisitos:</label>
+						<ul>
+							<li>Minimo 8 caracteres de tamanho</li>
+							<li>Conter 3/4 seguintes itens:</li>
+							<ul>
+								<li>Letras Maiúsculas</li>
+								<li>Letras Minúsculas</li>
+								<li>Números</li>
+								<li>Simbolos</li>
+							</ul>							
+						</ul>
+						<button type="submit" class="btn btn-primary">Verificar</button>
 					</div>
-				</div>
-				
-			</div>
-			<div class="col-sm-6">
-				<label for="password">Requisitos:</label>
-				<ul>
-					<li>Minimo 8 caracteres de tamanho</li>
-					<li>Letras Maiúsculas</li>
-					<li>Letras Minúsculas</li>
-					<li>Números</li>
-					<li>Simbolos</li>
-				</ul>
-				<button type="submit" class="btn btn-primary">Verificar</button>
-			</div>
-			
-			</form>
-			
-		  	<hr class="col-sm-12"/>
-		  	
-		  	<div>
-			              
-			  <table class="table table-bordered table-striped">
-			    <thead>
-			      <tr>
-			        <th class="col-md-6">Quesito</th>
-			        <th class="col-md-1">tipo</th>
-			        <th class="col-md-2">Taxa</th>
-			        <th class="col-md-2">Quantidade</th>
-			        <th class="col-md-1">Bonus</th>
-			        
-			      </tr>
-			    </thead>
-			    <tbody>
-			      <tr>			      	
-			        <td class="col-md-6">Número de Caracteres</td>
-			        <td class="col-md-1"><center>Flat</center></td>
-			        <td class="col-md-2"><center>+(n*4)</center></td>
-			        <td class="col-md-2"><input class="form-control" th:value="${senha.qtNumCaracteres}" disabled="true"/></td>
-			        <td class="col-md-1"><center><p th:text="| + ${senha.bnsNumCaracteres} |"></p></center></td>
-			      </tr>
-			      <tr>			      	
-			        <td class="col-md-6">Caracteres Maiúsculos</td>
-			        <td class="col-md-1"><center>Cond/Incr</center></td>
-			        <td class="col-md-2"><center>+((len-n)*2)</center></td>
-			        <td class="col-md-2"><input class="form-control" th:value="${senha.qtCarcMaiusculos}" disabled="true"/></td>
-			        <td class="col-md-1"><center><p th:text="| + ${senha.bnsCarcMaiusculos} |"></p></center></td>
-			        
-			      </tr>
-			      <tr>			      	
-			        <td class="col-md-6">Caracteres Minsculos</td>
-			        <td class="col-md-1"><center>Cond/Incr</center></td>
-			        <td class="col-md-2"><center>+((len-n)*2)</center></td>
-			        <td class="col-md-2"><input class="form-control" th:value="${senha.qtCarcMinusculos}" disabled="true"/></td>
-			        <td class="col-md-1"><center><p th:text="| + ${senha.bnsCarcMinusculos} |"></p></center></td>
-			      </tr>
-			      <tr>			      	
-			        <td class="col-md-6">Número</td>
-			        <td class="col-md-1"><center>Cond</center></td>
-			        <td class="col-md-2"><center>+(n*4)</center></td>
-			        <td class="col-md-2"><input class="form-control" th:value="${senha.qtNumbers}" disabled="true"/></td>
-			        <td class="col-md-1"><center><p th:text="| + ${senha.bnsNumbers} |"></p></center></td>
-			      </tr>
-			      <tr>			      	
-			        <td class="col-md-6">Simbolos</td>
-			        <td class="col-md-1"><center>Flat</center></td>
-			        <td class="col-md-2"><center>+(n*6)</center></td>
-			        <td class="col-md-2"><input class="form-control" th:value="${senha.qtSimbolos}" disabled="true"/></td>
-			        <td class="col-md-1"><center><p th:text="| + ${senha.bnsSimbolos} |"></p></center></td>
-			      </tr>
-			      <tr>			      	
-			        <td class="col-md-6">Sequencia de numero ou simbolos</td>
-			        <td class="col-md-1"><center>Flat</center></td>
-			        <td class="col-md-2"><center>+(n*2)</center></td>
-			        <td class="col-md-2"><input class="form-control" value="8" disabled="true"/></td>
-			        <td class="col-md-1"><center>+14</center></td>
-			      </tr>
-			      <tr>			      	
-			        <td class="col-md-6">Requisitos</td>
-			        <td class="col-md-1"><center>Flat</center></td>
-			        <td class="col-md-2"><center>+(n*2)</center></td>
-			        <td class="col-md-2"><input class="form-control" value="8" disabled="true"/></td>
-			        <td class="col-md-1"><center>+14</center></td>
-			      </tr>
-			      
-			    </tbody>
-			  </table>
-			</div>
-		
-		  	
-		  </div>
-		</div>
-	
-	</div><!--.container-->
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>	
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/mouse0270-bootstrap-notify/3.1.5/bootstrap-notify.min.js"></script>
+				</form>
+
+				<hr class="col-sm-12" />
+
+				<div>
+
+					<table class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<th class="col-md-6">Quesito</th>
+								<th class="col-md-1">tipo</th>
+								<th class="col-md-2">Taxa</th>
+								<th class="col-md-2">Quantidade</th>
+								<th class="col-md-1">Bonus</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="col-md-6">Número de Caracteres</td>
+								<td class="col-md-1"><center>Flat</center></td>
+								<td class="col-md-2"><center>+(n*4)</center></td>
+								<td class="col-md-2"><input class="form-control"
+									th:value="${senha.qtNumCaracteres}" disabled="true" /></td>
+								<td class="col-md-1"><center>
+										<p th:text="| + ${senha.bnsNumCaracteres} |"></p>
+									</center></td>
+							</tr>
+							<tr>
+								<td class="col-md-6">Caracteres Maiúsculos</td>
+								<td class="col-md-1"><center>Cond/Incr</center></td>
+								<td class="col-md-2"><center>+((len-n)*2)</center></td>
+								<td class="col-md-2"><input class="form-control"
+									th:value="${senha.qtCarcMaiusculos}" disabled="true" /></td>
+								<td class="col-md-1"><center>
+										<p th:text="| + ${senha.bnsCarcMaiusculos} |"></p>
+									</center></td>
+
+							</tr>
+							<tr>
+								<td class="col-md-6">Caracteres Minsculos</td>
+								<td class="col-md-1"><center>Cond/Incr</center></td>
+								<td class="col-md-2"><center>+((len-n)*2)</center></td>
+								<td class="col-md-2"><input class="form-control"
+									th:value="${senha.qtCarcMinusculos}" disabled="true" /></td>
+								<td class="col-md-1"><center>
+										<p th:text="| + ${senha.bnsCarcMinusculos} |"></p>
+									</center></td>
+							</tr>
+							<tr>
+								<td class="col-md-6">Número</td>
+								<td class="col-md-1"><center>Cond</center></td>
+								<td class="col-md-2"><center>+(n*4)</center></td>
+								<td class="col-md-2"><input class="form-control"
+									th:value="${senha.qtNumbers}" disabled="true" /></td>
+								<td class="col-md-1"><center>
+										<p th:text="| + ${senha.bnsNumbers} |"></p>
+									</center></td>
+							</tr>
+							<tr>
+								<td class="col-md-6">Simbolos</td>
+								<td class="col-md-1"><center>Flat</center></td>
+								<td class="col-md-2"><center>+(n*6)</center></td>
+								<td class="col-md-2"><input class="form-control"
+									th:value="${senha.qtSimbolos}" disabled="true" /></td>
+								<td class="col-md-1"><center>
+										<p th:text="| + ${senha.bnsSimbolos} |"></p>
+									</center></td>
+							</tr>
+							<tr>
+								<td class="col-md-6">Numeros ou Simbolos medios</td>
+								<td class="col-md-1"><center>Flat</center></td>
+								<td class="col-md-2"><center>+(n*2)</center></td>
+								<td class="col-md-2"><input class="form-control" th:value="${senha.qtSeqNumSimb}"
+									disabled="true" /></td>
+								<td class="col-md-1"><center><p th:text="| + ${senha.bnsSeqNumSimb} |"></p></center></td>
+							</tr>
+							<tr>
+								<td class="col-md-6">Requisitos</td>
+								<td class="col-md-1"><center>Flat</center></td>
+								<td class="col-md-2"><center>+(n*2)</center></td>
+								<td class="col-md-2"><input class="form-control" th:value="${senha.qtRequisitos}"
+									disabled="true" /></td>
+								<td class="col-md-1"><center><p th:text="| + ${senha.bnsRequisitos} |"></p></center></td>
+							</tr>
+
+						</tbody>
+						<thead>
+							<tr>
+								<th class="col-md-12" colspan="5">Deduções</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="col-md-6">Apenas letras</td>
+								<td class="col-md-1"><center>Flat</center></td>
+								<td class="col-md-2"><center>-n</center></td>
+								<td class="col-md-2"><input class="form-control" th:value="${senha.qtApenasLetras}"
+									disabled="true" /></td>
+								<td class="col-md-1"><center>
+										<p th:text="| ${senha.bnsApenasLetras} |"></p>
+									</center></td>
+							</tr>
+							<tr>
+								<td class="col-md-6">Apenas numeros</td>
+								<td class="col-md-1"><center>Flat</center></td>
+								<td class="col-md-2"><center>-n</center></td>
+								<td class="col-md-2"><input class="form-control" th:value="${senha.qtApenasNumeros}"
+									disabled="true" /></td>
+								<td class="col-md-1"><center>
+										<p th:text="| ${senha.bnsApenasNumeros} |"></p>
+									</center></td>
+							</tr>
+							<tr>
+								<td class="col-md-6">Caracteres Repetidos (Case
+									Insensitive)</td>
+								<td class="col-md-1"><center>Comp</center></td>
+								<td class="col-md-2"><center>-(n(n-1))</center></td>
+								<td class="col-md-2"><input class="form-control" th:value="${senha.qtCarcRepetidos}"
+									disabled="true" /></td>
+								<td class="col-md-1"><center>
+										<p th:text="| ${senha.bnsCarcRepetidos} |"></p>
+									</center></td>
+							</tr>
+							<tr>
+								<td class="col-md-6">Caracteres Maiusculos consecutivos</td>
+								<td class="col-md-1"><center>-(n*2)</center></td>
+								<td class="col-md-2"><center>-n</center></td>
+								<td class="col-md-2"><input class="form-control" th:value="${senha.qtCaracMaiusculosConsecutivos}"
+									disabled="true" /></td>
+								<td class="col-md-1"><center>
+										<p th:text="| ${senha.bnsCaracMaiusculosConsecutivos} |"></p>
+									</center></td>
+							</tr>
+							<tr>
+								<td class="col-md-6">Caracteres Minusculos consecutivos</td>
+								<td class="col-md-1"><center>Flat</center></td>
+								<td class="col-md-2"><center>-(n*2)</center></td>
+								<td class="col-md-2"><input class="form-control" th:value="${senha.qtCaracMaiusculosConsecutivos}"
+									disabled="true" /></td>
+								<td class="col-md-1"><center>
+										<p th:text="| ${senha.bnsCaracMaiusculosConsecutivos} |"></p>
+									</center></td>
+							</tr>
+
+							<tr>
+								<td class="col-md-6">Numeros consecutivos</td>
+								<td class="col-md-1"><center>Flat</center></td>
+								<td class="col-md-2"><center>-(n*2)</center></td>
+								<td class="col-md-2"><input class="form-control" th:value="${senha.qtNumerosConsecutivos}"
+									disabled="true" /></td>
+								<td class="col-md-1"><center>
+										<p th:text="| ${senha.bnsNumerosConsecutivos} |"></p>
+									</center></td>
+							</tr>
+							<tr>
+								<td class="col-md-6">Sequencia de Letras</td>
+								<td class="col-md-1"><center>Flat</center></td>
+								<td class="col-md-2"><center>-(n*3)</center></td>
+								<td class="col-md-2"><input class="form-control" th:value="${senha.qtSequenciaLetras}"
+									disabled="true" /></td>
+								<td class="col-md-1"><center>
+										<p th:text="| ${senha.bnsSequenciaLetras} |"></p>
+									</center></td>
+							</tr>
+							<tr>
+								<td class="col-md-6">Sequencia de numeros</td>
+								<td class="col-md-1"><center>Flat</center></td>
+								<td class="col-md-2"><center>-(n*3)</center></td>
+								<td class="col-md-2"><input class="form-control" th:value="${senha.qtSequenciaNumeros}"
+									disabled="true" /></td>
+								<td class="col-md-1"><center>
+										<p th:text="| ${senha.bnsSequenciaNumeros} |"></p>
+									</center></td>
+							</tr>
+							<tr>
+								<td class="col-md-6">Sequencia de Simbolos</td>
+								<td class="col-md-1"><center>Flat</center></td>
+								<td class="col-md-2"><center>-(n*3)</center></td>
+								<td class="col-md-2"><input class="form-control" th:value="${senha.qtSequenciaSimbolos}"
+									disabled="true" /></td>
+								<td class="col-md-1"><center>
+										<p th:text="| ${senha.bnsSequenciaSimbolos} |"></p>
+									</center></td>
+							</tr>
+
+
+						</tbody>
+
+
+					</table>
+
+
+
+
+				</div>
+
+
+			</div>
+		</div>
+
+	</div>
+	<!--.container-->
+
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/mouse0270-bootstrap-notify/3.1.5/bootstrap-notify.min.js"></script>
 
 	<div class="footer-bottom">
 
@@ -158,11 +293,8 @@
 
 				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 
-					<div class="copyright">
-
-						© 2016, Vitor Carrilho, All rights reserved
-
-					</div>
+					<div class="copyright">© 2016, Vitor Carrilho, All rights
+						reserved</div>
 
 				</div>
 
@@ -170,7 +302,9 @@
 
 					<div class="design">
 
-						 <a href="https://www.linkedin.com/in/vitorgcarrilho">Vitor Carrilho </a> |  <a target="_blank" href="https://github.com/VitorGCarrilho/">Java Developer</a>
+						<a href="https://www.linkedin.com/in/vitorgcarrilho">Vitor
+							Carrilho </a> | <a target="_blank"
+							href="https://github.com/VitorGCarrilho/">Java Developer</a>
 
 					</div>
 

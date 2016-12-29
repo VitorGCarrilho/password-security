@@ -20,8 +20,8 @@ public class PasswordController {
 	
 	@RequestMapping(value="/home" , method = RequestMethod.POST)
 	public ModelAndView home(Senha password){ 
-		System.out.println(password.getDsSenha());
 		ModelAndView mv = new ModelAndView("index");
+		password.calcular();
 		mv.addObject("senha", password);
 		return mv;
 	}
