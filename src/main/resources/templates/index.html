@@ -46,7 +46,7 @@
 							<div class="col-sm-6">
 								<label for="password">Pontuação:</label>
 								<div class="progress">
-									<div class="progress-bar" th:classappend="|progress-bar-${senha.classificacao.classeClassificacao}|"
+									<div id="pontuacao" class="progress-bar" th:classappend="|progress-bar-${senha.classificacao.classeClassificacao}|"
 										role="progressbar" th:style="| width: ${senha.soma}% |"><p th:text="|${senha.soma}%|"></p></div>
 								</div>
 							</div>
@@ -96,7 +96,7 @@
 								<td class="col-md-6">Número de Caracteres</td>
 								<td class="col-md-1"><center>Flat</center></td>
 								<td class="col-md-2"><center>+(n*4)</center></td>
-								<td class="col-md-2"><input class="form-control"
+								<td class="col-md-2"><input class="form-control" id="qtNumCaracteres"
 									th:value="${senha.qtNumCaracteres}" disabled="true" /></td>
 								<td class="col-md-1"><center>
 										<p th:text="| + ${senha.bnsNumCaracteres} |"></p>
@@ -198,6 +198,7 @@
 										<p th:text="| ${senha.bnsCarcRepetidos} |"></p>
 									</center></td>
 							</tr>
+							<!-- 
 							<tr>
 								<td class="col-md-6">Caracteres Maiusculos consecutivos</td>
 								<td class="col-md-1"><center>-(n*2)</center></td>
@@ -259,7 +260,7 @@
 										<p th:text="| ${senha.bnsSequenciaSimbolos} |"></p>
 									</center></td>
 							</tr>
-
+							 -->
 
 						</tbody>
 

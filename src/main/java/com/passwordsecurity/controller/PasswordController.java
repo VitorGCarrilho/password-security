@@ -1,5 +1,9 @@
 package com.passwordsecurity.controller;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,10 +23,22 @@ public class PasswordController {
 	}
 	
 	@RequestMapping(value="/home" , method = RequestMethod.POST)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public ModelAndView home(Senha password){ 
+		System.out.println(password.getDsSenha());
 		ModelAndView mv = new ModelAndView("index");
 		password.calcular();
 		mv.addObject("senha", password);
 		return mv;
 	}
+	
+	/*@RequestMapping(value="/verificarsenha" , method = RequestMethod.POST)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public void verificarSenha(Senha password){ 
+		System.out.println(password.getDsSenha());
+		password.calcular();
+		return password;
+	}*/
 }

@@ -35,3 +35,30 @@
 	});
 	
 })();
+
+$('#password').on('input',function(e){
+    //alert('Changed!')
+    var senha = $('#password').val();
+    $.ajax({
+    	  method: "POST",
+    	  url: "/home",
+    	  data: { dsSenha: senha},
+    	  success:function(data){
+    		  refreshFields(data);
+    	  }
+    	  
+    })
+    .done(function( msg ) {
+    	//$("#qtNumCaracteres").reload();
+    	//$('#qtNumCaracteres').load('home');
+   });
+});
+
+function refreshFields(data){
+	var json = JSON.parse(data);
+
+    $.each(json, function(i, item) {
+        var obj = json[i];
+        console.log(obj);
+    });
+}
