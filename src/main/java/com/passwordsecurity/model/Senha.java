@@ -38,6 +38,13 @@ public class Senha {
 	private int bnsSequenciaSimbolos;
 	private int soma;
 	private Classificacao classificacao = Classificacao.MUITO_CURTA;
+	private ClassificacaoSenha classificacaoSenha;
+	
+	
+
+	public ClassificacaoSenha getClassificacaoSenha() {
+		return classificacaoSenha;
+	}
 
 	public Classificacao getClassificacao() {
 		return classificacao;
@@ -320,5 +327,6 @@ public class Senha {
 		} else {
 			classificacao = Classificacao.MUITO_FORTE;
 		}
+		classificacaoSenha = new ClassificacaoSenha(classificacao);
 	}
 }

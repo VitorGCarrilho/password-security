@@ -39,26 +39,35 @@
 $('#password').on('input',function(e){
     //alert('Changed!')
     var senha = $('#password').val();
+    var nrChar = null;
     $.ajax({
     	  method: "POST",
-    	  url: "/home",
+    	  url: "/verificarsenha",
     	  data: { dsSenha: senha},
     	  success:function(data){
-    		  refreshFields(data);
+    		  console.log(data);
+    		  $('#qtNumCaracteres').val(data.qtNumCaracteres);
+    		  $("#pontuacao").width(data.soma);
+    		  removePogressBarClasses("#pontuacao",'progress-bar-');
+    		  $("#pontuacao").addClass("progress-bar-"+data.classificacaoSenha.classeClassificacao);
+    		  $('#valorPontuacao').text(data.soma+'%');
+    		  
+    		  console.log("progress-bar-"+data.classificacaoSenha.classeClassificacao);
     	  }
     	  
     })
     .done(function( msg ) {
-    	//$("#qtNumCaracteres").reload();
-    	//$('#qtNumCaracteres').load('home');
+  
    });
 });
 
 function refreshFields(data){
-	var json = JSON.parse(data);
-
-    $.each(json, function(i, item) {
-        var obj = json[i];
-        console.log(obj);
-    });
+	//console.log(data.qtNumCaracteres);
+	$('#qtNumCaracteres').val('eita');
+}
+function removePogressBarClasses(id, classe){
+	$(id).removeClass(classe+"danger");
+	$(id).removeClass(classe+"warning");
+	$(id).removeClass(classe+"info");
+	$(id).removeClass(classe+"success");
 }

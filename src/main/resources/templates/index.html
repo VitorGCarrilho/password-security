@@ -47,7 +47,7 @@
 								<label for="password">Pontuação:</label>
 								<div class="progress">
 									<div id="pontuacao" class="progress-bar" th:classappend="|progress-bar-${senha.classificacao.classeClassificacao}|"
-										role="progressbar" th:style="| width: ${senha.soma}% |"><p th:text="|${senha.soma}%|"></p></div>
+										role="progressbar" th:style="| width: ${senha.soma}% |"><p id="valorPontuacao" th:text="|${senha.soma}%|"></p></div>
 								</div>
 							</div>
 							<div class="col-sm-6">
