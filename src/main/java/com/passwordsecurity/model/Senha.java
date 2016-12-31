@@ -281,27 +281,33 @@ public class Senha {
 	}
 
 	private void calcQtCaracMaiusculosConsecutivos() {
-
+		qtCaracMaiusculosConsecutivos = getNumConsecutiveUpperCase(dsSenha);
+		bnsCaracMaiusculosConsecutivos= (-1) * (qtCaracMaiusculosConsecutivos *2);
 	}
 
 	private void calcQtCaracMinusculosConsecutivos() {
-
+		qtCaracMinusculosConsecutivos = getNumConsecutiveLowerCase(dsSenha);
+		bnsCaracMinusculosConsecutivos= (-1) * (qtCaracMinusculosConsecutivos *2);
 	}
 
 	private void calcQtNumerosConsecutivos() {
-
+		qtNumerosConsecutivos = getNumConsecutiveNumbers(dsSenha);
+		bnsNumerosConsecutivos= (-1) * (qtNumerosConsecutivos *2);
 	}
 
 	private void calcQtSequenciaLetras() {
-
+		qtSequenciaLetras = getNumSequenciaLetras(dsSenha);
+		bnsSequenciaLetras = (-1) * (qtSequenciaLetras * 3);
 	}
 
 	private void calcQtSequenciaNumeros() {
-
+		qtSequenciaNumeros = getNumSequenciaNumeros(dsSenha);
+		bnsSequenciaNumeros = (-1) * (qtSequenciaNumeros * 3);
 	}
 
 	private void calcQtSequenciaSimbolos() {
-
+		qtSequenciaSimbolos = getNumSequenciaSimbolos(dsSenha);
+		bnsSequenciaSimbolos  = (-1) * (qtSequenciaSimbolos * 3);
 	}
 
 	private void calcComplexibilidadeSenha() {

@@ -51,7 +51,7 @@
 								</div>
 							</div>
 							<div class="col-sm-6">
-								<label for="password">Classificação:</label> 
+								<label for="password" class="col-sm-12">Classificação:</label> 
 									<span id="classificacao" class="label" th:style="|width:50pt|" th:text="${senha.classificacao.dsClassificacao}"
 									th:classappend="|label-${senha.classificacao.classeClassificacao}|"
 									></span>
@@ -71,7 +71,7 @@
 								<li>Simbolos</li>
 							</ul>							
 						</ul>
-						<button type="submit" class="btn btn-primary">Verificar</button>
+						
 					</div>
 
 				</form>
@@ -198,25 +198,25 @@
 										<p id="bnsCarcRepetidos" th:text="| ${senha.bnsCarcRepetidos} |"></p>
 									</center></td>
 							</tr>
-							<!-- 
+							
 							<tr>
 								<td class="col-md-6">Caracteres Maiusculos consecutivos</td>
-								<td class="col-md-1"><center>-(n*2)</center></td>
-								<td class="col-md-2"><center>-n</center></td>
-								<td class="col-md-2"><input class="form-control" th:value="${senha.qtCaracMaiusculosConsecutivos}"
+								<td class="col-md-1"><center>Flat</center></td>
+								<td class="col-md-2"><center>-(n*2)</center></td>
+								<td class="col-md-2"><input id="qtCaracMaiusculosConsecutivos" class="form-control" th:value="${senha.qtCaracMaiusculosConsecutivos}"
 									disabled="true" /></td>
 								<td class="col-md-1"><center>
-										<p th:text="| ${senha.bnsCaracMaiusculosConsecutivos} |"></p>
+										<p id="bnsCaracMaiusculosConsecutivos" th:text="| ${senha.bnsCaracMaiusculosConsecutivos} |"></p>
 									</center></td>
 							</tr>
 							<tr>
 								<td class="col-md-6">Caracteres Minusculos consecutivos</td>
 								<td class="col-md-1"><center>Flat</center></td>
 								<td class="col-md-2"><center>-(n*2)</center></td>
-								<td class="col-md-2"><input class="form-control" th:value="${senha.qtCaracMaiusculosConsecutivos}"
+								<td class="col-md-2"><input id="qtCaracMinusculosConsecutivos" class="form-control" th:value="${senha.qtCaracMinusculosConsecutivos}"
 									disabled="true" /></td>
 								<td class="col-md-1"><center>
-										<p th:text="| ${senha.bnsCaracMaiusculosConsecutivos} |"></p>
+										<p id="bnsCaracMinusculosConsecutivos" th:text="| ${senha.bnsCaracMinusculosConsecutivos} |"></p>
 									</center></td>
 							</tr>
 
@@ -224,43 +224,43 @@
 								<td class="col-md-6">Numeros consecutivos</td>
 								<td class="col-md-1"><center>Flat</center></td>
 								<td class="col-md-2"><center>-(n*2)</center></td>
-								<td class="col-md-2"><input class="form-control" th:value="${senha.qtNumerosConsecutivos}"
+								<td class="col-md-2"><input id="qtNumerosConsecutivos" class="form-control" th:value="${senha.qtNumerosConsecutivos}"
 									disabled="true" /></td>
 								<td class="col-md-1"><center>
-										<p th:text="| ${senha.bnsNumerosConsecutivos} |"></p>
+										<p id="bnsNumerosConsecutivos" th:text="| ${senha.bnsNumerosConsecutivos} |"></p>
 									</center></td>
 							</tr>
 							<tr>
-								<td class="col-md-6">Sequencia de Letras</td>
+								<td class="col-md-6">Sequencia de Letras (3+)</td>
 								<td class="col-md-1"><center>Flat</center></td>
 								<td class="col-md-2"><center>-(n*3)</center></td>
-								<td class="col-md-2"><input class="form-control" th:value="${senha.qtSequenciaLetras}"
+								<td class="col-md-2"><input id="qtSequenciaLetras" class="form-control" th:value="${senha.qtSequenciaLetras}"
 									disabled="true" /></td>
 								<td class="col-md-1"><center>
-										<p th:text="| ${senha.bnsSequenciaLetras} |"></p>
+										<p id="bnsSequenciaLetras" th:text="| ${senha.bnsSequenciaLetras} |"></p>
 									</center></td>
 							</tr>
 							<tr>
-								<td class="col-md-6">Sequencia de numeros</td>
+								<td class="col-md-6">Sequencia de numeros (3+)</td>
 								<td class="col-md-1"><center>Flat</center></td>
 								<td class="col-md-2"><center>-(n*3)</center></td>
-								<td class="col-md-2"><input class="form-control" th:value="${senha.qtSequenciaNumeros}"
+								<td class="col-md-2"><input id="qtSequenciaNumeros" class="form-control" th:value="${senha.qtSequenciaNumeros}"
 									disabled="true" /></td>
 								<td class="col-md-1"><center>
-										<p th:text="| ${senha.bnsSequenciaNumeros} |"></p>
+										<p id="bnsSequenciaNumeros" th:text="| ${senha.bnsSequenciaNumeros} |"></p>
 									</center></td>
 							</tr>
 							<tr>
-								<td class="col-md-6">Sequencia de Simbolos</td>
+								<td class="col-md-6">Sequencia de Simbolos (3+)</td>
 								<td class="col-md-1"><center>Flat</center></td>
 								<td class="col-md-2"><center>-(n*3)</center></td>
-								<td class="col-md-2"><input class="form-control" th:value="${senha.qtSequenciaSimbolos}"
+								<td class="col-md-2"><input id="qtSequenciaSimbolos" class="form-control" th:value="${senha.qtSequenciaSimbolos}"
 									disabled="true" /></td>
 								<td class="col-md-1"><center>
-										<p th:text="| ${senha.bnsSequenciaSimbolos} |"></p>
+										<p id="bnsSequenciaSimbolos" th:text="| ${senha.bnsSequenciaSimbolos} |"></p>
 									</center></td>
 							</tr>
-							 -->
+							 
 
 						</tbody>
 
@@ -303,7 +303,7 @@
 
 					<div class="design">
 
-						<a href="https://www.linkedin.com/in/vitorgcarrilho">Vitor
+						<a target="_blank" href="https://www.linkedin.com/in/vitorgcarrilho">Vitor
 							Carrilho </a> | <a target="_blank"
 							href="https://github.com/VitorGCarrilho/">Java Developer</a>
 

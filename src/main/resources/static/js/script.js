@@ -91,6 +91,19 @@ function atualizarCampos(data){
 	$('#bnsApenasNumeros').text(data.bnsApenasNumeros);
 	$('#qtCarcRepetidos').val(data.qtCarcRepetidos);
 	$('#bnsCarcRepetidos').text(data.bnsCarcRepetidos);
+	$('#qtCaracMaiusculosConsecutivos').val(data.qtCaracMaiusculosConsecutivos);
+	$('#bnsCaracMaiusculosConsecutivos').text(data.bnsCaracMaiusculosConsecutivos);
+	$('#qtCaracMinusculosConsecutivos').val(data.qtCaracMinusculosConsecutivos);
+	$('#bnsCaracMinusculosConsecutivos').text(data.bnsCaracMinusculosConsecutivos);
+	$('#qtNumerosConsecutivos').val(data.qtNumerosConsecutivos);
+	$('#bnsNumerosConsecutivos').text(data.bnsNumerosConsecutivos);
+	$('#qtSequenciaLetras').val(data.qtSequenciaLetras);
+	$('#bnsSequenciaLetras').text(data.bnsSequenciaLetras);
+	$('#qtSequenciaNumeros').val(data.qtSequenciaNumeros);
+	$('#bnsSequenciaNumeros').text(data.bnsSequenciaNumeros);
+	$('#qtSequenciaSimbolos').val(data.qtSequenciaSimbolos);
+	$('#bnsSequenciaSimbolos').text(data.bnsSequenciaSimbolos);
+	console.log(data.qtSequenciaLetras);
 }
 function removeClasses(id, classe) {
 	$(id).removeClass(classe + "danger");
