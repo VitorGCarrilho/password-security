@@ -1,73 +1,100 @@
 (function() {
-	
-	var PasswordToggler = function( element, field ) {
+
+	var PasswordToggler = function(element, field) {
 		this.element = element;
 		this.field = field;
-		
-		this.toggle();	
+
+		this.toggle();
 	};
-	
+
 	PasswordToggler.prototype = {
-		toggle: function() {
+		toggle : function() {
 			var self = this;
-			self.element.addEventListener( "change", function() {
-				if( self.element.checked ) {
-					self.field.setAttribute( "type", "text" );
+			self.element.addEventListener("change", function() {
+				if (self.element.checked) {
+					self.field.setAttribute("type", "text");
 				} else {
-					self.field.setAttribute( "type", "password" );	
+					self.field.setAttribute("type", "password");
 				}
-            }, false);
+			}, false);
 		}
 	};
-	
-	document.addEventListener( "DOMContentLoaded", function() {
-		var checkbox = document.querySelector( "#show-hide" ),
-			pwd = document.querySelector( "#password" ),
-			form = document.querySelector( "#passwordSecurity" );
-			
-			form.addEventListener( "enviar", 
-					function( e ) {
-						e.preventDefault();
-					}, false);
-			
-			var toggler = new PasswordToggler( checkbox, pwd );
-		
+
+	document.addEventListener("DOMContentLoaded", function() {
+		var checkbox = document.querySelector("#show-hide"), pwd = document
+				.querySelector("#password"), form = document
+				.querySelector("#passwordSecurity");
+
+		form.addEventListener("enviar", function(e) {
+			e.preventDefault();
+		}, false);
+
+		var toggler = new PasswordToggler(checkbox, pwd);
+
 	});
-	
+
 })();
 
-$('#password').on('input',function(e){
-    //alert('Changed!')
-    var senha = $('#password').val();
-    var nrChar = null;
-    $.ajax({
-    	  method: "POST",
-    	  url: "/verificarsenha",
-    	  data: { dsSenha: senha},
-    	  success:function(data){
-    		  console.log(data);
-    		  $('#qtNumCaracteres').val(data.qtNumCaracteres);
-    		  $("#pontuacao").width(data.soma);
-    		  removePogressBarClasses("#pontuacao",'progress-bar-');
-    		  $("#pontuacao").addClass("progress-bar-"+data.classificacaoSenha.classeClassificacao);
-    		  $('#valorPontuacao').text(data.soma+'%');
-    		  
-    		  console.log("progress-bar-"+data.classificacaoSenha.classeClassificacao);
-    	  }
-    	  
-    })
-    .done(function( msg ) {
-  
-   });
+$('#password').on('input', function(e) {
+	// alert('Changed!')
+	var senha = $('#password').val();
+	var nrChar = null;
+	$.ajax({
+		method : "POST",
+		url : "/verificarsenha",
+		data : {
+			dsSenha : senha
+		},
+		success : function(data) {
+			atualizarFormulario(data);
+		}
+
+	}).done(function(msg) {
+
+	});
 });
 
-function refreshFields(data){
-	//console.log(data.qtNumCaracteres);
-	$('#qtNumCaracteres').val('eita');
+function atualizarFormulario(data) {
+	atualizarClassificacao(data);
+	atualizarCampos(data);
 }
-function removePogressBarClasses(id, classe){
-	$(id).removeClass(classe+"danger");
-	$(id).removeClass(classe+"warning");
-	$(id).removeClass(classe+"info");
-	$(id).removeClass(classe+"success");
+function atualizarClassificacao(data) {
+	
+	$("#pontuacao").width(data.soma);
+	removeClasses("#pontuacao", 'progress-bar-');
+	$("#pontuacao").addClass(
+			"progress-bar-" + data.classificacaoSenha.classeClassificacao);
+	$('#valorPontuacao').text(data.soma + '%');
+	removeClasses('#classificacao', 'label-');
+	$('#classificacao').addClass(
+			"label-" + data.classificacaoSenha.classeClassificacao);
+	$('#classificacao').text(data.classificacaoSenha.dsClassificacao);
+}
+function atualizarCampos(data){
+	$('#qtNumCaracteres').val(data.qtNumCaracteres);
+	$('#bnsNumCaracteres').text(data.bnsNumCaracteres);
+	$('#qtCarcMinusculos').val(data.qtCarcMinusculos);
+	$('#bnsCarcMinusculos').text(data.bnsCarcMinusculos);
+	$('#qtCarcMaiusculos').val(data.qtCarcMaiusculos);
+	$('#bnsCarcMaiusculos').text(data.bnsCarcMaiusculos);
+	$('#qtNumbers').val(data.qtNumbers);
+	$('#bnsNumbers').text(data.bnsNumbers);
+	$('#qtSimbolos').val(data.qtSimbolos);
+	$('#bnsSimbolos').text(data.bnsSimbolos);
+	$('#qtSeqNumSimb').val(data.qtSeqNumSimb);
+	$('#bnsSeqNumSimb').text(data.bnsSeqNumSimb);
+	$('#qtRequisitos').val(data.qtRequisitos);
+	$('#bnsRequisitos').text(data.bnsRequisitos);
+	$('#qtApenasLetras').val(data.qtApenasLetras);
+	$('#bnsApenasLetras').text(data.bnsApenasLetras);
+	$('#qtApenasNumeros').val(data.qtApenasNumeros);
+	$('#bnsApenasNumeros').text(data.bnsApenasNumeros);
+	$('#qtCarcRepetidos').val(data.qtCarcRepetidos);
+	$('#bnsCarcRepetidos').text(data.bnsCarcRepetidos);
+}
+function removeClasses(id, classe) {
+	$(id).removeClass(classe + "danger");
+	$(id).removeClass(classe + "warning");
+	$(id).removeClass(classe + "info");
+	$(id).removeClass(classe + "success");
 }

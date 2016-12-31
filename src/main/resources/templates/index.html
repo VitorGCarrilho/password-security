@@ -52,8 +52,8 @@
 							</div>
 							<div class="col-sm-6">
 								<label for="password">Classificação:</label> 
-									<span class="label" th:text="${senha.classificacao.dsClassificacao}"
-									th:classappend="|progress-bar-${senha.classificacao.classeClassificacao}|"
+									<span id="classificacao" class="label" th:style="|width:50pt|" th:text="${senha.classificacao.dsClassificacao}"
+									th:classappend="|label-${senha.classificacao.classeClassificacao}|"
 									></span>
 							</div>
 						</div>
@@ -99,17 +99,17 @@
 								<td class="col-md-2"><input class="form-control" id="qtNumCaracteres"
 									th:value="${senha.qtNumCaracteres}" disabled="true" /></td>
 								<td class="col-md-1"><center>
-										<p th:text="| + ${senha.bnsNumCaracteres} |"></p>
+										<p id="bnsNumCaracteres" th:text="| + ${senha.bnsNumCaracteres} |"></p>
 									</center></td>
 							</tr>
 							<tr>
 								<td class="col-md-6">Caracteres Maiúsculos</td>
 								<td class="col-md-1"><center>Cond/Incr</center></td>
 								<td class="col-md-2"><center>+((len-n)*2)</center></td>
-								<td class="col-md-2"><input class="form-control"
+								<td class="col-md-2"><input class="form-control" id="qtCarcMaiusculos"
 									th:value="${senha.qtCarcMaiusculos}" disabled="true" /></td>
 								<td class="col-md-1"><center>
-										<p th:text="| + ${senha.bnsCarcMaiusculos} |"></p>
+										<p id="bnsCarcMaiusculos" th:text="| + ${senha.bnsCarcMaiusculos} |"></p>
 									</center></td>
 
 							</tr>
@@ -117,47 +117,47 @@
 								<td class="col-md-6">Caracteres Minsculos</td>
 								<td class="col-md-1"><center>Cond/Incr</center></td>
 								<td class="col-md-2"><center>+((len-n)*2)</center></td>
-								<td class="col-md-2"><input class="form-control"
+								<td class="col-md-2"><input class="form-control" id="qtCarcMinusculos"
 									th:value="${senha.qtCarcMinusculos}" disabled="true" /></td>
 								<td class="col-md-1"><center>
-										<p th:text="| + ${senha.bnsCarcMinusculos} |"></p>
+										<p id="bnsCarcMinusculos" th:text="| + ${senha.bnsCarcMinusculos} |"></p>
 									</center></td>
 							</tr>
 							<tr>
 								<td class="col-md-6">Número</td>
 								<td class="col-md-1"><center>Cond</center></td>
 								<td class="col-md-2"><center>+(n*4)</center></td>
-								<td class="col-md-2"><input class="form-control"
+								<td class="col-md-2"><input class="form-control" id="qtNumbers"
 									th:value="${senha.qtNumbers}" disabled="true" /></td>
 								<td class="col-md-1"><center>
-										<p th:text="| + ${senha.bnsNumbers} |"></p>
+										<p id="bnsNumbers" th:text="| + ${senha.bnsNumbers} |"></p>
 									</center></td>
 							</tr>
 							<tr>
 								<td class="col-md-6">Simbolos</td>
 								<td class="col-md-1"><center>Flat</center></td>
 								<td class="col-md-2"><center>+(n*6)</center></td>
-								<td class="col-md-2"><input class="form-control"
+								<td class="col-md-2"><input class="form-control" id="qtSimbolos"
 									th:value="${senha.qtSimbolos}" disabled="true" /></td>
 								<td class="col-md-1"><center>
-										<p th:text="| + ${senha.bnsSimbolos} |"></p>
+										<p id="bnsSimbolos" th:text="| + ${senha.bnsSimbolos} |"></p>
 									</center></td>
 							</tr>
 							<tr>
 								<td class="col-md-6">Numeros ou Simbolos medios</td>
 								<td class="col-md-1"><center>Flat</center></td>
 								<td class="col-md-2"><center>+(n*2)</center></td>
-								<td class="col-md-2"><input class="form-control" th:value="${senha.qtSeqNumSimb}"
+								<td class="col-md-2"><input class="form-control" id="qtSeqNumSimb" th:value="${senha.qtSeqNumSimb}"
 									disabled="true" /></td>
-								<td class="col-md-1"><center><p th:text="| + ${senha.bnsSeqNumSimb} |"></p></center></td>
+								<td class="col-md-1"><center><p id="bnsSeqNumSimb" th:text="| + ${senha.bnsSeqNumSimb} |"></p></center></td>
 							</tr>
 							<tr>
 								<td class="col-md-6">Requisitos</td>
 								<td class="col-md-1"><center>Flat</center></td>
 								<td class="col-md-2"><center>+(n*2)</center></td>
-								<td class="col-md-2"><input class="form-control" th:value="${senha.qtRequisitos}"
+								<td class="col-md-2"><input class="form-control" id="qtRequisitos" th:value="${senha.qtRequisitos}"
 									disabled="true" /></td>
-								<td class="col-md-1"><center><p th:text="| + ${senha.bnsRequisitos} |"></p></center></td>
+								<td class="col-md-1"><center><p id="bnsRequisitos" th:text="| + ${senha.bnsRequisitos} |"></p></center></td>
 							</tr>
 
 						</tbody>
@@ -171,20 +171,20 @@
 								<td class="col-md-6">Apenas letras</td>
 								<td class="col-md-1"><center>Flat</center></td>
 								<td class="col-md-2"><center>-n</center></td>
-								<td class="col-md-2"><input class="form-control" th:value="${senha.qtApenasLetras}"
+								<td class="col-md-2"><input class="form-control" id="qtApenasLetras" th:value="${senha.qtApenasLetras}"
 									disabled="true" /></td>
 								<td class="col-md-1"><center>
-										<p th:text="| ${senha.bnsApenasLetras} |"></p>
+										<p id="bnsApenasLetras" th:text="| ${senha.bnsApenasLetras} |"></p>
 									</center></td>
 							</tr>
 							<tr>
 								<td class="col-md-6">Apenas numeros</td>
 								<td class="col-md-1"><center>Flat</center></td>
 								<td class="col-md-2"><center>-n</center></td>
-								<td class="col-md-2"><input class="form-control" th:value="${senha.qtApenasNumeros}"
+								<td class="col-md-2"><input class="form-control" id="qtApenasNumeros" th:value="${senha.qtApenasNumeros}"
 									disabled="true" /></td>
 								<td class="col-md-1"><center>
-										<p th:text="| ${senha.bnsApenasNumeros} |"></p>
+										<p id="bnsApenasNumeros" th:text="| ${senha.bnsApenasNumeros} |"></p>
 									</center></td>
 							</tr>
 							<tr>
@@ -192,10 +192,10 @@
 									Insensitive)</td>
 								<td class="col-md-1"><center>Comp</center></td>
 								<td class="col-md-2"><center>-(n(n-1))</center></td>
-								<td class="col-md-2"><input class="form-control" th:value="${senha.qtCarcRepetidos}"
+								<td class="col-md-2"><input id="qtCarcRepetidos" class="form-control" th:value="${senha.qtCarcRepetidos}"
 									disabled="true" /></td>
 								<td class="col-md-1"><center>
-										<p th:text="| ${senha.bnsCarcRepetidos} |"></p>
+										<p id="bnsCarcRepetidos" th:text="| ${senha.bnsCarcRepetidos} |"></p>
 									</center></td>
 							</tr>
 							<!-- 
